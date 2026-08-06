@@ -87,12 +87,31 @@ Each product stores independent channel state:
 |---------|------|----------------|
 | `shared_schemas` | `packages/shared_schemas/` | Shared Pydantic models / DTOs across services |
 
+## Agent infra (portable)
+
+| Path | Responsibility |
+|------|----------------|
+| `agent-infra/agents/` | Agent specs for ingestion + dispatch (any AI tool) |
+| `agent-infra/skills/` | Domain skills source of truth |
+| `agent-infra/tools/` | Shared upload/status/health scripts |
+| `CLAUDE.md` | Claude / Claude Code entrypoint |
+| `.cursor/skills/` | Cursor mirror of `agent-infra/skills/` |
+
 ## Infrastructure (planned)
 
 | Component | Path | Responsibility |
 |-----------|------|----------------|
 | Docker configs | `infra/docker/` | Shared compose overrides and build helpers |
 | Nginx | `infra/nginx/` | Reverse proxy for frontend and API gateway |
+
+## GitHub Pages (frontend only)
+
+| Item | Detail |
+|------|--------|
+| Workflow | `.github/workflows/deploy-gh-pages.yml` |
+| Docs | [`docs/GITHUB_PAGES.md`](GITHUB_PAGES.md) |
+| Site | `https://vasiuddin7733.github.io/humachine/` |
+| Backends | Not on Pages — attach via `VITE_*_URL` to Docker or free API hosts |
 
 ## Integration plan
 

@@ -1,9 +1,8 @@
-# Cursor Skills Index
+# Skills (portable)
 
-Cursor auto-discovers skills in `.cursor/skills/`.
+Source of truth for humachine domain skills. Usable by **Cursor**, **Claude**, and other AI tools.
 
-**Portable source of truth:** [`agent-infra/skills/`](../../agent-infra/skills/)  
-Agents + tools for any AI (Claude, Cursor, etc.): [`agent-infra/`](../../agent-infra/)
+Cursor auto-loads a copy under `.cursor/skills/` — keep both in sync when editing. Prefer editing here first.
 
 | Skill | Use when |
 |-------|----------|
@@ -17,6 +16,6 @@ Agents + tools for any AI (Claude, Cursor, etc.): [`agent-infra/`](../../agent-i
 | [worker-service](worker-service/SKILL.md) | Background jobs, sync, publish retries |
 | [frontend-control-center](frontend-control-center/SKILL.md) | React dashboard, Tailwind UI, Vite/pnpm |
 | [playwright-e2e-testing](playwright-e2e-testing/SKILL.md) | Browser tests, selectors, CI e2e setup |
-| [listing-promotion-services](listing-promotion-services/SKILL.md) | Future listing/promotion microservices |
+| [listing-promotion-services](listing-promotion-services/SKILL.md) | Listing/promotion/worker scaffolding |
 
-When editing skills, update **`agent-infra/skills/`** first, then copy into `.cursor/skills/` so Cursor stays in sync.
+Also see: [`../agents/`](../agents/), [`../tools/`](../tools/), root [`CLAUDE.md`](../../CLAUDE.md)

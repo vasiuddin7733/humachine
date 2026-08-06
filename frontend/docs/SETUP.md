@@ -97,3 +97,13 @@ To connect this UI to the planned Python backend later, replace local component 
 2. `listing_service` for Amazon, Flipkart, and Meesho publishing
 3. `worker_service` for background state transitions
 4. `promotion_service` for marketplace campaign automation
+
+## GitHub Pages
+
+Free static hosting for this frontend: see [docs/GITHUB_PAGES.md](../../docs/GITHUB_PAGES.md).
+
+```bash
+VITE_BASE_PATH=/humachine/ pnpm build
+```
+
+Attach backends with `VITE_API_GATEWAY_URL` (and other `VITE_*_URL` vars) from `frontend/.env.example`. GitHub Pages cannot host FastAPI services.

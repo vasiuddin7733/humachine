@@ -24,9 +24,20 @@ Operator and developer skills supported by the humachine ecommerce platform.
 | **Promotion service** | FastAPI, Pydantic, pytest | `services/promotion_service/` |
 | **Worker service** | FastAPI, Pydantic, pytest | `services/worker_service/` |
 
-## Cursor agent skills
+## Portable AI infra (any tool)
 
-These teach Cursor how to work in this repo. Stored in `.cursor/skills/`:
+Source of truth: [`agent-infra/`](../agent-infra/)
+
+| Folder | Purpose |
+|--------|---------|
+| `agent-infra/agents/` | Agent specs (ingestion, dispatch) |
+| `agent-infra/skills/` | Domain skills for Cursor, Claude, etc. |
+| `agent-infra/tools/` | Shared scripts (upload, status, health) |
+
+Claude entrypoint: [`CLAUDE.md`](../CLAUDE.md)  
+Cursor mirror: [`.cursor/skills/`](../.cursor/skills/)
+
+## Skill list
 
 1. `ecommerce-marketplace-workflow` — state machines and validation rules
 2. `api-gateway-service` — FastAPI gateway patterns
@@ -39,8 +50,6 @@ These teach Cursor how to work in this repo. Stored in `.cursor/skills/`:
 9. `frontend-control-center` — React UI and pnpm commands
 10. `playwright-e2e-testing` — test writing and locator fixes
 11. `listing-promotion-services` — listing/promotion/worker scaffolding
-
-See [`.cursor/skills/README.md`](../.cursor/skills/README.md) for the agent index.
 
 ## Listing state machine
 

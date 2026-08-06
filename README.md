@@ -12,13 +12,18 @@ services/
   listing_service/          FastAPI marketplace listing microservice
   promotion_service/        FastAPI promotion campaign microservice
   worker_service/           Background jobs, sync, and retries
+agent-infra/                Portable agents, skills, tools (Cursor + Claude + others)
+  agents/                   Agent specs (ingestion, dispatch)
+  skills/                   Domain skills (source of truth)
+  tools/                    Shared scripts (upload, status, health)
 packages/
   shared_schemas/           Shared Pydantic models (planned)
 infra/
   docker/                   Shared Docker configs (planned)
   nginx/                    Reverse proxy configs (planned)
 docs/                       Project architecture and workflow docs
-.cursor/skills/             Cursor agent skills for this repo
+.cursor/skills/             Cursor mirror of agent-infra/skills
+CLAUDE.md                   Claude / Claude Code entrypoint
 ```
 
 ## Quick start
@@ -155,6 +160,7 @@ docker compose up --build worker_service
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Skills](docs/SKILLS.md)
+- [GitHub Pages (frontend)](docs/GITHUB_PAGES.md)
 - [Frontend setup](frontend/docs/SETUP.md)
 - [API gateway setup](services/api_gateway/docs/SETUP.md)
 - [Catalog service setup](services/catalog_service/docs/SETUP.md)
@@ -164,7 +170,14 @@ docker compose up --build worker_service
 
 ## Cursor agent skills
 
-Located in `.cursor/skills/`:
+Located in `.cursor/skills/` (mirror). **Source of truth:** [`agent-infra/skills/`](agent-infra/skills/).
+
+Portable stack for any AI tool:
+
+- Agents: [`agent-infra/agents/`](agent-infra/agents/)
+- Skills: [`agent-infra/skills/`](agent-infra/skills/)
+- Tools: [`agent-infra/tools/`](agent-infra/tools/)
+- Claude entry: [`CLAUDE.md`](CLAUDE.md)
 
 - `ecommerce-marketplace-workflow`
 - `api-gateway-service`
