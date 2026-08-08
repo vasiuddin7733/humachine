@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.routers.health import router as health_router
+from app.routers.ingestions import router as ingestions_router
 from app.routers.marketplaces import router as marketplaces_router
 from app.routers.products import router as products_router
 
@@ -23,3 +24,4 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(marketplaces_router, prefix=settings.api_prefix)
 app.include_router(products_router, prefix=settings.api_prefix)
+app.include_router(ingestions_router, prefix=settings.api_prefix)

@@ -32,6 +32,8 @@ class ProductCreate(BaseModel):
     category: str = Field(min_length=2, max_length=120)
     price: float = Field(gt=0)
     marketplaces: list[Marketplace] = Field(min_length=1)
+    description: str = Field(default="", max_length=4000)
+    image_urls: list[str] = Field(default_factory=list, max_length=20)
 
 
 class ProductUpdate(BaseModel):
@@ -39,6 +41,8 @@ class ProductUpdate(BaseModel):
     category: str | None = Field(default=None, min_length=2, max_length=120)
     price: float | None = Field(default=None, gt=0)
     marketplaces: list[Marketplace] | None = Field(default=None, min_length=1)
+    description: str | None = Field(default=None, max_length=4000)
+    image_urls: list[str] | None = Field(default=None, max_length=20)
 
 
 class Product(BaseModel):
@@ -49,3 +53,5 @@ class Product(BaseModel):
     price: float
     marketplaces: list[Marketplace]
     channels: dict[Marketplace, ChannelState]
+    description: str = ""
+    image_urls: list[str] = Field(default_factory=list)

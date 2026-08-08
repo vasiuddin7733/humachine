@@ -39,6 +39,8 @@ class CatalogStore:
                     Marketplace.amazon: ChannelState(listing_status=ListingStatus.ready),
                     Marketplace.flipkart: ChannelState(listing_status=ListingStatus.submitted),
                 },
+                description="Premium over-ear headphones.",
+                image_urls=["https://cdn.example.com/headphones.jpg"],
             ),
             Product(
                 id=next(self._id_sequence),
@@ -59,6 +61,8 @@ class CatalogStore:
                     ),
                     Marketplace.meesho: ChannelState(listing_status=ListingStatus.ready),
                 },
+                description="BPA-free reusable bottle.",
+                image_urls=["https://cdn.example.com/bottle.jpg"],
             ),
         ]
 
@@ -82,6 +86,8 @@ class CatalogStore:
             price=payload.price,
             marketplaces=payload.marketplaces,
             channels=channels,
+            description=payload.description.strip(),
+            image_urls=list(payload.image_urls),
         )
         self._products[product_id] = product
         return product

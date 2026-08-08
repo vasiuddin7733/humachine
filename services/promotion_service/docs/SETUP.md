@@ -53,6 +53,8 @@ Host port and container port are both `8004`.
 | `PROMOTION_SERVICE_API_PREFIX` | `/api/v1` | API route prefix |
 | `PROMOTION_SERVICE_ENVIRONMENT` | `development` | Runtime environment |
 | `PROMOTION_SERVICE_PORT` | `8004` | Service port |
+| `PROMOTION_SERVICE_REDIS_URL` | `redis://127.0.0.1:6379/0` | Shared queue broker |
+| `PROMOTION_SERVICE_QUEUE_NAME` | `humachine.ingestion` | Shared queue name |
 | `PROMOTION_SERVICE_ALLOWED_ORIGINS` | frontend/gateway URLs | CORS origins |
 
 ## API routes

@@ -1,10 +1,18 @@
 services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      FRONTEND_ENVIRONMENT: production
     restart: unless-stopped
 
   api_gateway:
@@ -15,6 +23,22 @@ services:
       - "8001:8001"
     environment:
       API_GATEWAY_ENVIRONMENT: production
+      API_GATEWAY_PORT: "8001"
+      API_GATEWAY_CATALOG_SERVICE_URL: http://catalog_service:8002
+      API_GATEWAY_LISTING_SERVICE_URL: http://listing_service:8003
+      API_GATEWAY_PROMOTION_SERVICE_URL: http://promotion_service:8004
+      API_GATEWAY_WORKER_SERVICE_URL: http://worker_service:8005
+      API_GATEWAY_ORCHESTRATION_ENABLED: "true"
+      API_GATEWAY_QUEUE_BACKEND: redis
+      API_GATEWAY_REDIS_URL: redis://redis:6379/0
+      API_GATEWAY_QUEUE_NAME: humachine.ingestion
+      API_GATEWAY_ALLOWED_ORIGINS: '["http://localhost:8000","http://127.0.0.1:8000"]'
+    depends_on:
+      - redis
+      - catalog_service
+      - listing_service
+      - promotion_service
+      - worker_service
     restart: unless-stopped
 
   catalog_service:
@@ -25,6 +49,12 @@ services:
       - "8002:8002"
     environment:
       CATALOG_SERVICE_ENVIRONMENT: production
+      CATALOG_SERVICE_PORT: "8002"
+      CATALOG_SERVICE_REDIS_URL: redis://redis:6379/0
+      CATALOG_SERVICE_QUEUE_NAME: humachine.ingestion
+      CATALOG_SERVICE_ALLOWED_ORIGINS: '["http://localhost:8000","http://127.0.0.1:8000","http://localhost:8001","http://127.0.0.1:8001"]'
+    depends_on:
+      - redis
     restart: unless-stopped
 
   listing_service:
@@ -35,6 +65,12 @@ services:
       - "8003:8003"
     environment:
       LISTING_SERVICE_ENVIRONMENT: production
+      LISTING_SERVICE_PORT: "8003"
+      LISTING_SERVICE_REDIS_URL: redis://redis:6379/0
+      LISTING_SERVICE_QUEUE_NAME: humachine.ingestion
+      LISTING_SERVICE_ALLOWED_ORIGINS: '["http://localhost:8000","http://127.0.0.1:8000","http://localhost:8001","http://127.0.0.1:8001"]'
+    depends_on:
+      - redis
     restart: unless-stopped
 
   promotion_service:
@@ -45,4 +81,26 @@ services:
       - "8004:8004"
     environment:
       PROMOTION_SERVICE_ENVIRONMENT: production
+      PROMOTION_SERVICE_PORT: "8004"
+      PROMOTION_SERVICE_REDIS_URL: redis://redis:6379/0
+      PROMOTION_SERVICE_QUEUE_NAME: humachine.ingestion
+      PROMOTION_SERVICE_ALLOWED_ORIGINS: '["http://localhost:8000","http://127.0.0.1:8000","http://localhost:8001","http://127.0.0.1:8001"]'
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  worker_service:
+    build:
+      context: ./services/worker_service
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      WORKER_SERVICE_ENVIRONMENT: production
+      WORKER_SERVICE_PORT: "8005"
+      WORKER_SERVICE_REDIS_URL: redis://redis:6379/0
+      WORKER_SERVICE_QUEUE_NAME: humachine.ingestion
+      WORKER_SERVICE_ALLOWED_ORIGINS: '["http://localhost:8000","http://127.0.0.1:8000","http://localhost:8001","http://127.0.0.1:8001"]'
+    depends_on:
+      - redis
     restart: unless-stopped
