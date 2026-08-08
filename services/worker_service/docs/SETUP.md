@@ -53,6 +53,8 @@ Host port and container port are both `8005`.
 | `WORKER_SERVICE_API_PREFIX` | `/api/v1` | API route prefix |
 | `WORKER_SERVICE_ENVIRONMENT` | `development` | Runtime environment |
 | `WORKER_SERVICE_PORT` | `8005` | Service port |
+| `WORKER_SERVICE_REDIS_URL` | `redis://127.0.0.1:6379/0` | Shared queue broker |
+| `WORKER_SERVICE_QUEUE_NAME` | `humachine.ingestion` | Shared queue name |
 | `WORKER_SERVICE_ALLOWED_ORIGINS` | frontend/gateway URLs | CORS origins |
 
 ## Job types

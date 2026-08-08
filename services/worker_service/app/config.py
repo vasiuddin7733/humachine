@@ -6,6 +6,8 @@ class Settings(BaseSettings):
     api_prefix: str = "/api/v1"
     environment: str = "development"
     port: int = 8005
+    redis_url: str = "redis://127.0.0.1:6379/0"
+    queue_name: str = "humachine.ingestion"
     allowed_origins: list[str] = [
         "http://localhost:8000",
         "http://127.0.0.1:8000",

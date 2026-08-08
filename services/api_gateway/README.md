@@ -8,7 +8,7 @@ This service is the backend entrypoint for the ecommerce control center frontend
 - manage product draft data
 - track listing status by marketplace
 - trigger mock publish and promotion actions
-- prepare a clean surface for future Python microservices
+- queue-backed product ingestion agent with per-service status tracking
 
 ## Run locally
 
@@ -26,19 +26,24 @@ uvicorn app.main:app --reload --port 8001
 - Product draft creation with marketplace selection
 - Per-channel listing transitions (`draft → ready → submitted → active`)
 - Promotion guardrails (requires active listing)
-- Pydantic schemas for frontend integration
+- Product ingestion agent (`POST /api/v1/products/upload`)
+- Ingestion status polling (`GET /api/v1/ingestions/{id}`)
 
 ## Documentation
 
 - `docs/SETUP.md` — install, env vars, curl examples
 - `../../docs/ARCHITECTURE.md` — full system architecture
+- `.env.example` — compose/service environment template
 
-## Initial routes
+## Routes
 
 - `GET /health`
 - `GET /api/v1/marketplaces`
 - `GET /api/v1/products`
 - `POST /api/v1/products`
+- `POST /api/v1/products/upload`
 - `GET /api/v1/products/{product_id}`
 - `POST /api/v1/products/{product_id}/publish`
 - `POST /api/v1/products/{product_id}/promote`
+- `GET /api/v1/ingestions`
+- `GET /api/v1/ingestions/{run_id}`

@@ -53,6 +53,8 @@ Host port and container port are both `8003`.
 | `LISTING_SERVICE_API_PREFIX` | `/api/v1` | API route prefix |
 | `LISTING_SERVICE_ENVIRONMENT` | `development` | Runtime environment |
 | `LISTING_SERVICE_PORT` | `8003` | Service port |
+| `LISTING_SERVICE_REDIS_URL` | `redis://127.0.0.1:6379/0` | Shared queue broker |
+| `LISTING_SERVICE_QUEUE_NAME` | `humachine.ingestion` | Shared queue name |
 | `LISTING_SERVICE_ALLOWED_ORIGINS` | frontend/gateway URLs | CORS origins |
 
 ## API routes

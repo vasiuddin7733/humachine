@@ -34,22 +34,26 @@ Build an ecommerce operator dashboard that manages the full flow from product dr
 
 - FastAPI entrypoint for the frontend
 - In-memory catalog store for MVP development
-- Routes for products, marketplaces, publish, and promote actions
+- Product ingestion uses **two agents** in `app/agents/`:
+  - **Ingestion agent** — validate upload, store draft, enqueue messages
+  - **Dispatch agent** — consume queue, call catalog/listing/promotion/worker, track status
+- Queue backend: in-memory (local) or Redis (Docker)
 
 ### Worker service (`services/worker_service/`)
 
 - FastAPI microservice for background job enqueue and status tracking
 - Job types: listing sync, promotion sync, publish retry, inventory sync
 - Advances status: `queued → running → completed` (with retry on failure)
-- MVP uses in-memory job store; future Celery workers will handle real polling
+- MVP uses in-memory job store; Redis-backed Celery workers can replace mocks later
 
 ## Control flow
 
-1. Operator creates a product draft.
-2. Operator selects target marketplaces.
-3. Listing moves through `draft → ready → submitted → active` per channel.
-4. Promotion moves through `not_started → scheduled → live` after listing activation.
-5. Worker jobs sync listing/promotion status and retry failed publishes.
+1. Operator uploads product images and content via `POST /api/v1/products/upload`.
+2. Gateway stores the draft, creates an ingestion run, and publishes queue messages.
+3. Agent dispatches catalog → listing → promotion → worker and updates step status.
+4. Operator polls `GET /api/v1/ingestions/{id}` to track progress.
+5. Listing moves through `draft → ready → submitted → active` per channel (auto-activate optional).
+6. Promotion starts after listing activation; worker jobs sync status and retries.
 
 ## Marketplace model
 
@@ -82,6 +86,16 @@ Each product stores independent channel state:
 | Package | Path | Responsibility |
 |---------|------|----------------|
 | `shared_schemas` | `packages/shared_schemas/` | Shared Pydantic models / DTOs across services |
+
+## Agent infra (portable)
+
+| Path | Responsibility |
+|------|----------------|
+| `agent-infra/agents/` | Agent specs for ingestion + dispatch (any AI tool) |
+| `agent-infra/skills/` | Domain skills source of truth |
+| `agent-infra/tools/` | Shared upload/status/health scripts |
+| `CLAUDE.md` | Claude / Claude Code entrypoint |
+| `.cursor/skills/` | Cursor mirror of `agent-infra/skills/` |
 
 ## Infrastructure (planned)
 
