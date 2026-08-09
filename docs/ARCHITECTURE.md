@@ -18,11 +18,30 @@ Build an ecommerce operator dashboard that manages the full flow from product dr
 - Validates drafts and marketplace assignments
 - Initializes per-channel state for listing/promotion workflows
 
+### Listing service (`services/listing_service/`)
+
+- FastAPI microservice for marketplace listing publish flow
+- Advances status: `draft → ready → submitted → active`
+- Assigns mock external listing IDs for Amazon, Flipkart, and Meesho
+
+### Promotion service (`services/promotion_service/`)
+
+- FastAPI microservice for campaign creation and launch
+- Advances status: `not_started → scheduled → live`
+- Requires an active listing before campaign creation
+
 ### API gateway (`services/api_gateway/`)
 
 - FastAPI entrypoint for the frontend
 - In-memory catalog store for MVP development
 - Routes for products, marketplaces, publish, and promote actions
+
+### Worker service (`services/worker_service/`)
+
+- FastAPI microservice for background job enqueue and status tracking
+- Job types: listing sync, promotion sync, publish retry, inventory sync
+- Advances status: `queued → running → completed` (with retry on failure)
+- MVP uses in-memory job store; future Celery workers will handle real polling
 
 ## Control flow
 
@@ -30,7 +49,7 @@ Build an ecommerce operator dashboard that manages the full flow from product dr
 2. Operator selects target marketplaces.
 3. Listing moves through `draft → ready → submitted → active` per channel.
 4. Promotion moves through `not_started → scheduled → live` after listing activation.
-5. Future worker jobs will sync status with real marketplace APIs.
+5. Worker jobs sync listing/promotion status and retry failed publishes.
 
 ## Marketplace model
 
@@ -48,14 +67,28 @@ Each product stores independent channel state:
 }
 ```
 
-## Next backend services
+## Backend services
 
-| Service | Status | Responsibility |
-|---------|--------|----------------|
-| `catalog_service` | Active (MVP) | Product CRUD, validation, SKU rules |
-| `listing_service` | Planned | Amazon SP-API, Flipkart, Meesho listing payloads |
-| `promotion_service` | Planned | Campaign creation and budget rules |
-| `worker_service` | Planned | Celery jobs, retries, scheduled sync |
+| Service | Port | Status | Responsibility |
+|---------|------|--------|----------------|
+| `api_gateway` | 8001 | Active (MVP) | Frontend API entrypoint |
+| `catalog_service` | 8002 | Active (MVP) | Product CRUD, validation, SKU rules |
+| `listing_service` | 8003 | Active (MVP) | Marketplace publish + status transitions |
+| `promotion_service` | 8004 | Active (MVP) | Campaign creation and launch |
+| `worker_service` | 8005 | Active (MVP) | Background jobs, retries, scheduled sync |
+
+## Shared packages (planned)
+
+| Package | Path | Responsibility |
+|---------|------|----------------|
+| `shared_schemas` | `packages/shared_schemas/` | Shared Pydantic models / DTOs across services |
+
+## Infrastructure (planned)
+
+| Component | Path | Responsibility |
+|-----------|------|----------------|
+| Docker configs | `infra/docker/` | Shared compose overrides and build helpers |
+| Nginx | `infra/nginx/` | Reverse proxy for frontend and API gateway |
 
 ## Integration plan
 
