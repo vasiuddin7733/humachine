@@ -8,6 +8,8 @@ Multi-marketplace ecommerce control center for managing product drafts, listings
 frontend/                 React + TypeScript admin dashboard
 services/api_gateway/     FastAPI gateway for frontend APIs
 services/catalog_service/ FastAPI product catalog microservice
+services/listing_service/ FastAPI marketplace listing microservice
+services/promotion_service/ FastAPI promotion campaign microservice
 docs/                     Project architecture and workflow docs
 .cursor/skills/           Cursor agent skills for this repo
 ```
@@ -63,6 +65,44 @@ Docker:
 docker compose up --build catalog_service
 ```
 
+### Listing service
+
+```bash
+cd services/listing_service
+python -m venv .venv
+source .venv/bin/activate
+pip install -e '.[dev]'
+uvicorn app.main:app --reload --port 8003
+pytest
+```
+
+API docs: `http://127.0.0.1:8003/docs`
+
+Docker:
+
+```bash
+docker compose up --build listing_service
+```
+
+### Promotion service
+
+```bash
+cd services/promotion_service
+python -m venv .venv
+source .venv/bin/activate
+pip install -e '.[dev]'
+uvicorn app.main:app --reload --port 8004
+pytest
+```
+
+API docs: `http://127.0.0.1:8004/docs`
+
+Docker:
+
+```bash
+docker compose up --build promotion_service
+```
+
 ## Skills covered in this project
 
 - Catalog draft creation and validation
@@ -79,6 +119,8 @@ docker compose up --build catalog_service
 - [Frontend setup](frontend/docs/SETUP.md)
 - [API gateway setup](services/api_gateway/docs/SETUP.md)
 - [Catalog service setup](services/catalog_service/docs/SETUP.md)
+- [Listing service setup](services/listing_service/docs/SETUP.md)
+- [Promotion service setup](services/promotion_service/docs/SETUP.md)
 
 ## Cursor agent skills
 
@@ -87,12 +129,12 @@ Located in `.cursor/skills/`:
 - `ecommerce-marketplace-workflow`
 - `api-gateway-service`
 - `catalog-service`
+- `listing-service`
+- `promotion-service`
 - `frontend-control-center`
 - `playwright-e2e-testing`
 - `listing-promotion-services`
 
 ## Planned services
 
-1. `listing_service` — marketplace publishing (SP-API and channel APIs)
-2. `promotion_service` — campaign automation
-3. `worker_service` — background jobs and sync
+1. `worker_service` — background jobs and sync
