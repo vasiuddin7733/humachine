@@ -1,6 +1,6 @@
 ---
 name: frontend-control-center
-description: Build and test the React TypeScript frontend in humachine. Use when editing the ecommerce dashboard, Tailwind UI, marketplace tabs, Playwright e2e tests, or pnpm/Vite commands for frontend/.
+description: Build and test the React TypeScript frontend in humachine ecommerce. Use when editing the ecommerce dashboard, Tailwind UI, marketplace tabs, Playwright e2e tests, or pnpm/Vite commands for frontend/.
 ---
 
 # Frontend Control Center

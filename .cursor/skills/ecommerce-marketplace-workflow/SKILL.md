@@ -1,6 +1,6 @@
 ---
 name: ecommerce-marketplace-workflow
-description: Guide multi-marketplace ecommerce workflows for Amazon, Flipkart, and Meesho. Use when building product listing flows, promotion automation, catalog-to-marketplace state machines, or backend/frontend features for humachine.
+description: Guide multi-marketplace ecommerce workflows for Amazon, Flipkart, and Meesho. Use when building product listing flows, promotion automation, catalog-to-marketplace state machines, or backend/frontend features for humachine ecommerce.
 ---
 
 # Ecommerce Marketplace Workflow

@@ -1,6 +1,6 @@
 ---
 name: playwright-e2e-testing
-description: Write and fix Playwright end-to-end tests for the humachine frontend. Use when adding e2e tests, debugging strict mode locator failures, configuring playwright.config.ts, or running pnpm test:e2e.
+description: Write and fix Playwright end-to-end tests for the humachine ecommerce frontend. Use when adding e2e tests, debugging strict mode locator failures, configuring playwright.config.ts, or running pnpm test:e2e.
 ---
 
 # Playwright E2E Testing

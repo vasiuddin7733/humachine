@@ -1,6 +1,6 @@
 # Skills
 
-Operator and developer skills supported by the Humachine ecommerce platform.
+Operator and developer skills supported by the humachine ecommerce ecommerce platform.
 
 ## Operator skills (business workflow)
 
@@ -16,9 +16,10 @@ Operator and developer skills supported by the Humachine ecommerce platform.
 | Skill | Stack | Location |
 |-------|-------|----------|
 | **Frontend dashboard** | React, TypeScript, Tailwind, Vite | `frontend/` |
+| **Catalog service** | FastAPI, Pydantic, pytest | `services/catalog_service/` |
 | **API gateway** | FastAPI, Pydantic, pytest | `services/api_gateway/` |
 | **E2E testing** | Playwright, pnpm | `frontend/tests/` |
-| **Listing services** | Python microservices (planned) | `services/listing_service/` |
+| **Listing service** | FastAPI, Pydantic, pytest | `services/listing_service/` |
 | **Promotion services** | Python microservices (planned) | `services/promotion_service/` |
 
 ## Cursor agent skills
@@ -26,10 +27,12 @@ Operator and developer skills supported by the Humachine ecommerce platform.
 These teach Cursor how to work in this repo. Stored in `.cursor/skills/`:
 
 1. `ecommerce-marketplace-workflow` — state machines and validation rules
-2. `api-gateway-service` — FastAPI development patterns
-3. `frontend-control-center` — React UI and pnpm commands
-4. `playwright-e2e-testing` — test writing and locator fixes
-5. `listing-promotion-services` — future microservice scaffolding
+2. `api-gateway-service` — FastAPI gateway patterns
+3. `catalog-service` — product CRUD and validation
+4. `listing-service` — marketplace publish and status transitions
+5. `frontend-control-center` — React UI and pnpm commands
+6. `playwright-e2e-testing` — test writing and locator fixes
+7. `listing-promotion-services` — promotion/worker scaffolding
 
 See [`.cursor/skills/README.md`](../.cursor/skills/README.md) for the agent index.
 

@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_name: str = "Humachine API Gateway"
+    app_name: str = "humachine ecommerce API Gateway"
     api_prefix: str = "/api/v1"
     environment: str = "development"
     allowed_origins: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]

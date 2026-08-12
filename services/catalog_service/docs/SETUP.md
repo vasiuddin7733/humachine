@@ -1,4 +1,4 @@
-# API Gateway Setup
+# Catalog Service Setup
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@
 ## Install
 
 ```bash
-cd services/api_gateway
+cd services/catalog_service
 python -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev]'
@@ -17,7 +17,7 @@ pip install -e '.[dev]'
 ## Run
 
 ```bash
-uvicorn app.main:app --reload --port 8001
+uvicorn app.main:app --reload --port 8002
 ```
 
 ## Test
@@ -26,14 +26,29 @@ uvicorn app.main:app --reload --port 8001
 pytest
 ```
 
+## Docker
+
+From repository root:
+
+```bash
+docker compose up --build catalog_service
+```
+
+From `services/catalog_service/`:
+
+```bash
+docker build -t humachine ecommerce-catalog-service .
+docker run --rm -p 8002:8002 humachine ecommerce-catalog-service
+```
+
 ## Environment variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `API_GATEWAY_APP_NAME` | humachine ecommerce API Gateway | Service title |
-| `API_GATEWAY_API_PREFIX` | `/api/v1` | API route prefix |
-| `API_GATEWAY_ENVIRONMENT` | `development` | Runtime environment |
-| `API_GATEWAY_ALLOWED_ORIGINS` | localhost Vite URLs | CORS origins |
+| `CATALOG_SERVICE_APP_NAME` | humachine ecommerce Catalog Service | Service title |
+| `CATALOG_SERVICE_API_PREFIX` | `/api/v1` | API route prefix |
+| `CATALOG_SERVICE_ENVIRONMENT` | `development` | Runtime environment |
+| `CATALOG_SERVICE_ALLOWED_ORIGINS` | frontend/gateway URLs | CORS origins |
 
 ## API routes
 
@@ -44,22 +59,14 @@ pytest
 | GET | `/api/v1/products` | List products |
 | POST | `/api/v1/products` | Create product draft |
 | GET | `/api/v1/products/{id}` | Get product by id |
-| POST | `/api/v1/products/{id}/publish` | Advance listing status |
-| POST | `/api/v1/products/{id}/promote` | Advance promotion status |
-
-## Skills implemented
-
-- Product draft creation with marketplace selection
-- Per-channel listing state transitions
-- Promotion guardrails (listing must be active first)
-- Frontend-ready JSON schemas with Pydantic
+| PUT | `/api/v1/products/{id}` | Update product draft |
 
 ## Example requests
 
 Create product:
 
 ```bash
-curl -X POST http://127.0.0.1:8001/api/v1/products \
+curl -X POST http://127.0.0.1:8002/api/v1/products \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Desk Lamp",
@@ -69,10 +76,10 @@ curl -X POST http://127.0.0.1:8001/api/v1/products \
   }'
 ```
 
-Publish to Flipkart:
+Update product:
 
 ```bash
-curl -X POST http://127.0.0.1:8001/api/v1/products/1/publish \
+curl -X PUT http://127.0.0.1:8002/api/v1/products/1 \
   -H "Content-Type: application/json" \
-  -d '{"marketplace": "flipkart"}'
+  -d '{"price": 44.99}'
 ```

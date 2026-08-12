@@ -1,6 +1,6 @@
 ---
 name: api-gateway-service
-description: Develop and test the FastAPI api_gateway service in humachine. Use when adding routes, Pydantic schemas, catalog store logic, pytest tests, CORS config, or running uvicorn for services/api_gateway.
+description: Develop and test the FastAPI api_gateway service in humachine ecommerce. Use when adding routes, Pydantic schemas, catalog store logic, pytest tests, CORS config, or running uvicorn for services/api_gateway.
 ---
 
 # API Gateway Service

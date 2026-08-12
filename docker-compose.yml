@@ -6,11 +6,33 @@ services:
     ports:
       - "8000:8000"
     restart: unless-stopped
-  
+
   api_gateway:
     build:
       context: ./services/api_gateway
       dockerfile: Dockerfile
     ports:
       - "8001:8001"
+    environment:
+      API_GATEWAY_ENVIRONMENT: production
+    restart: unless-stopped
+
+  catalog_service:
+    build:
+      context: ./services/catalog_service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      CATALOG_SERVICE_ENVIRONMENT: production
+    restart: unless-stopped
+
+  listing_service:
+    build:
+      context: ./services/listing_service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      LISTING_SERVICE_ENVIRONMENT: production
     restart: unless-stopped
