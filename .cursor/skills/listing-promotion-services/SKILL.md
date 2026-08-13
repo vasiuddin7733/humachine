@@ -1,6 +1,6 @@
 ---
 name: listing-promotion-services
-description: Design and scaffold listing_service and promotion_service Python microservices for humachine. Use when building marketplace publishing, Amazon SP-API integration, Flipkart/Meesho listing jobs, or automated promotion campaigns.
+description: Design and scaffold listing_service and promotion_service Python microservices for humachine ecommerce. Use when building marketplace publishing, Amazon SP-API integration, Flipkart/Meesho listing jobs, or automated promotion campaigns.
 ---
 
 # Listing and Promotion Services
