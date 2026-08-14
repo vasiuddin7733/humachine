@@ -16,7 +16,7 @@ description: Develop and test the FastAPI api_gateway service in humachine. Use 
 ```bash
 cd services/api_gateway
 source .venv/bin/activate
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8001
 pytest
 ```
 

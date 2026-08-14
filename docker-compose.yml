@@ -1,0 +1,28 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  api_gateway:
+    build:
+      context: ./services/api_gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    environment:
+      API_GATEWAY_ENVIRONMENT: production
+    restart: unless-stopped
+
+  catalog_service:
+    build:
+      context: ./services/catalog_service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8000"
+    environment:
+      CATALOG_SERVICE_ENVIRONMENT: production
+    restart: unless-stopped
