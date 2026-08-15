@@ -33,6 +33,28 @@ pnpm lint
 pnpm test:e2e
 ```
 
+## Docker
+
+From repository root:
+
+```bash
+docker compose up --build frontend
+```
+
+From `frontend/`:
+
+```bash
+docker build -t humachine-frontend .
+docker run --rm -p 8000:8000 humachine-frontend
+```
+
+The `.dockerignore` file keeps the image small by excluding:
+
+- `node_modules/`
+- `dist/`
+- `tests/` and Playwright artifacts
+- docs, editor files, and local env files
+
 If Playwright browser binaries are not installed yet:
 
 ```bash

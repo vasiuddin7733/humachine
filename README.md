@@ -23,6 +23,14 @@ pnpm dev
 
 App: `http://localhost:5173`
 
+Docker:
+
+```bash
+docker compose up --build frontend
+```
+
+App (container): `http://localhost:8000`
+
 ### API gateway
 
 ```bash
@@ -30,10 +38,10 @@ cd services/api_gateway
 python -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev]'
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8001
 ```
 
-API docs: `http://127.0.0.1:8000/docs`
+API docs: `http://127.0.0.1:8001/docs`
 
 ## Skills covered in this project
 

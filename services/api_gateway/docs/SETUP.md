@@ -17,7 +17,7 @@ pip install -e '.[dev]'
 ## Run
 
 ```bash
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8001
 ```
 
 ## Test
@@ -59,7 +59,7 @@ pytest
 Create product:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/v1/products \
+curl -X POST http://127.0.0.1:8001/api/v1/products \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Desk Lamp",
@@ -72,7 +72,7 @@ curl -X POST http://127.0.0.1:8000/api/v1/products \
 Publish to Flipkart:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/v1/products/1/publish \
+curl -X POST http://127.0.0.1:8001/api/v1/products/1/publish \
   -H "Content-Type: application/json" \
   -d '{"marketplace": "flipkart"}'
 ```
