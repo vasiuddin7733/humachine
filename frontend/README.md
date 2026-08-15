@@ -31,10 +31,32 @@ This frontend is a React + TypeScript dashboard for a multi-marketplace ecommerc
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev          # http://localhost:8000
 pnpm build
 pnpm test:e2e
 ```
+
+## Docker
+
+Build and run from repo root:
+
+```bash
+docker compose up --build frontend
+```
+
+Or from `frontend/`:
+
+```bash
+docker build -t humachine-frontend .
+docker run --rm -p 8000:8000 humachine-frontend
+```
+
+App: `http://localhost:8000`
+
+Files:
+- `Dockerfile` — multi-stage build with pnpm + nginx
+- `.dockerignore` — excludes node_modules, tests, docs, and artifacts
+- `nginx.conf` — SPA routing for Vite build output
 
 ## Test setup
 
@@ -49,3 +71,10 @@ pnpm exec playwright install chromium
 ## Additional docs
 
 - `docs/SETUP.md` for local setup, testing, and extension guidance
+
+## Test artifacts
+
+Playwright output is ignored via root and frontend gitignore rules:
+
+- `test-results/`
+- `playwright-report/`
