@@ -53,6 +53,18 @@ const skillCards = [
     title: 'Promotion automation',
     detail: 'Launch campaigns only after the selected channel becomes active and ready for promotion.',
   },
+  {
+    title: 'API integration',
+    detail: 'Connect the dashboard to the FastAPI gateway for product CRUD, publish, and promote actions.',
+  },
+  {
+    title: 'E2E testing',
+    detail: 'Validate marketplace flows with Playwright using stable selectors and channel-specific actions.',
+  },
+  {
+    title: 'Service expansion',
+    detail: 'Extend listing and promotion microservices for real Amazon, Flipkart, and Meesho APIs.',
+  },
 ] as const
 
 const documentationLinks = [

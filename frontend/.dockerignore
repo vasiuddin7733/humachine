@@ -1,0 +1,33 @@
+# Dependencies and build output
+node_modules
+dist
+dist-ssr
+
+# Tests and reports
+tests
+test-results
+playwright-report
+blob-report
+playwright.config.ts
+
+# Docs and editor files
+docs
+*.md
+.vscode
+.idea
+.DS_Store
+
+# Git and env
+.git
+.gitignore
+.env
+.env.*
+*.local
+
+# Logs and caches
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+coverage
+.cache
