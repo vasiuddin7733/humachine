@@ -40,6 +40,34 @@ const workflowSteps = [
   },
 ] as const
 
+const skillCards = [
+  {
+    title: 'Catalog ops',
+    detail: 'Create product drafts, validate core attributes, and assign the right marketplaces before listing.',
+  },
+  {
+    title: 'Marketplace control',
+    detail: 'Track Amazon, Flipkart, and Meesho separately so each listing can move at its own pace.',
+  },
+  {
+    title: 'Promotion automation',
+    detail: 'Launch campaigns only after the selected channel becomes active and ready for promotion.',
+  },
+] as const
+
+const documentationLinks = [
+  {
+    title: 'Frontend README',
+    detail: 'Project overview, commands, and testing notes for the React + Vite frontend.',
+    href: '/README.md',
+  },
+  {
+    title: 'Setup guide',
+    detail: 'Step-by-step instructions for install, development, testing, and extension points.',
+    href: '/docs/SETUP.md',
+  },
+] as const
+
 function emptyChannelState(): Record<Marketplace, ChannelState> {
   return {
     amazon: { status: 'draft', promotionStatus: 'not_started' },
@@ -381,6 +409,59 @@ function App() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+        <article className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+          <div className="mb-5">
+            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-slate-50">
+              Skills
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300">
+              The dashboard is designed around the core operator skills needed
+              to launch and promote products across multiple marketplaces.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {skillCards.map((skill) => (
+              <article
+                key={skill.title}
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950/60"
+              >
+                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-50">
+                  {skill.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300">{skill.detail}</p>
+              </article>
+            ))}
+          </div>
+        </article>
+
+        <article className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+          <div className="mb-5">
+            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-slate-50">
+              Documentation
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300">
+              Use these references to understand setup, workflow, and test
+              coverage.
+            </p>
+          </div>
+          <div className="grid gap-4">
+            {documentationLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-indigo-300 hover:bg-white dark:border-slate-800 dark:bg-slate-950/60 dark:hover:bg-slate-950"
+              >
+                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-slate-50">
+                  {link.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300">{link.detail}</p>
+              </a>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section className="grid items-start gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
