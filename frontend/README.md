@@ -45,3 +45,7 @@ If this is your first time using Playwright on the machine, install the browser 
 ```bash
 pnpm exec playwright install chromium
 ```
+
+## Additional docs
+
+- `docs/SETUP.md` for local setup, testing, and extension guidance
