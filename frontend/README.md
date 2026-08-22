@@ -36,6 +36,28 @@ pnpm build
 pnpm test:e2e
 ```
 
+## Docker
+
+Build and run from repo root:
+
+```bash
+docker compose up --build frontend
+```
+
+Or from `frontend/`:
+
+```bash
+docker build -t humachine-frontend .
+docker run --rm -p 8080:80 humachine-frontend
+```
+
+App: `http://localhost:8080`
+
+Files:
+- `Dockerfile` — multi-stage build with pnpm + nginx
+- `.dockerignore` — excludes node_modules, tests, docs, and artifacts
+- `nginx.conf` — SPA routing for Vite build output
+
 ## Test setup
 
 The Playwright config starts the Vite preview server automatically on port `4173` and runs the browser test in `tests/app.spec.ts`.

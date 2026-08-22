@@ -23,6 +23,14 @@ pnpm dev
 
 App: `http://localhost:5173`
 
+Docker:
+
+```bash
+docker compose up --build frontend
+```
+
+App (container): `http://localhost:8080`
+
 ### API gateway
 
 ```bash
