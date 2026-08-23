@@ -20,7 +20,7 @@ Operator and developer skills supported by the humachine ecommerce ecommerce pla
 | **API gateway** | FastAPI, Pydantic, pytest | `services/api_gateway/` |
 | **E2E testing** | Playwright, pnpm | `frontend/tests/` |
 | **Listing service** | FastAPI, Pydantic, pytest | `services/listing_service/` |
-| **Promotion services** | Python microservices (planned) | `services/promotion_service/` |
+| **Promotion service** | FastAPI, Pydantic, pytest | `services/promotion_service/` |
 
 ## Cursor agent skills
 
@@ -30,9 +30,10 @@ These teach Cursor how to work in this repo. Stored in `.cursor/skills/`:
 2. `api-gateway-service` — FastAPI gateway patterns
 3. `catalog-service` — product CRUD and validation
 4. `listing-service` — marketplace publish and status transitions
-5. `frontend-control-center` — React UI and pnpm commands
-6. `playwright-e2e-testing` — test writing and locator fixes
-7. `listing-promotion-services` — promotion/worker scaffolding
+5. `promotion-service` — campaign creation and launch
+6. `frontend-control-center` — React UI and pnpm commands
+7. `playwright-e2e-testing` — test writing and locator fixes
+8. `listing-promotion-services` — worker scaffolding
 
 See [`.cursor/skills/README.md`](../.cursor/skills/README.md) for the agent index.
 

@@ -36,3 +36,13 @@ services:
     environment:
       LISTING_SERVICE_ENVIRONMENT: production
     restart: unless-stopped
+
+  promotion_service:
+    build:
+      context: ./services/promotion_service
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    environment:
+      PROMOTION_SERVICE_ENVIRONMENT: production
+    restart: unless-stopped
