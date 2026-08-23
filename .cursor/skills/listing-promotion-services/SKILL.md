@@ -11,7 +11,7 @@ description: Design and scaffold listing_service and promotion_service Python mi
 |---------|------|------|
 | `listing_service` | `services/listing_service/` | Active MVP — publish and sync marketplace listings |
 | `promotion_service` | `services/promotion_service/` | Active MVP — create and manage ad campaigns |
-| `worker_service` | `services/worker_service/` | Celery jobs, retries, polling |
+| `worker_service` | `services/worker_service/` | Active MVP — background jobs, retries, polling |
 
 ## Listing flow
 
