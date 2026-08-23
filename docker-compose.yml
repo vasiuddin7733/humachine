@@ -46,3 +46,13 @@ services:
     environment:
       PROMOTION_SERVICE_ENVIRONMENT: production
     restart: unless-stopped
+
+  worker_service:
+    build:
+      context: ./services/worker_service
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      WORKER_SERVICE_ENVIRONMENT: production
+    restart: unless-stopped
