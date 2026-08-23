@@ -18,6 +18,12 @@ Build an ecommerce operator dashboard that manages the full flow from product dr
 - Validates drafts and marketplace assignments
 - Initializes per-channel state for listing/promotion workflows
 
+### Listing service (`services/listing_service/`)
+
+- FastAPI microservice for marketplace listing publish flow
+- Advances status: `draft → ready → submitted → active`
+- Assigns mock external listing IDs for Amazon, Flipkart, and Meesho
+
 ### API gateway (`services/api_gateway/`)
 
 - FastAPI entrypoint for the frontend
@@ -53,7 +59,7 @@ Each product stores independent channel state:
 | Service | Status | Responsibility |
 |---------|--------|----------------|
 | `catalog_service` | Active (MVP) | Product CRUD, validation, SKU rules |
-| `listing_service` | Planned | Amazon SP-API, Flipkart, Meesho listing payloads |
+| `listing_service` | Active (MVP) | Marketplace publish + status transitions |
 | `promotion_service` | Planned | Campaign creation and budget rules |
 | `worker_service` | Planned | Celery jobs, retries, scheduled sync |
 

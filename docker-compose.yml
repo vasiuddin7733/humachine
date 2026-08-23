@@ -26,3 +26,13 @@ services:
     environment:
       CATALOG_SERVICE_ENVIRONMENT: production
     restart: unless-stopped
+
+  listing_service:
+    build:
+      context: ./services/listing_service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      LISTING_SERVICE_ENVIRONMENT: production
+    restart: unless-stopped
