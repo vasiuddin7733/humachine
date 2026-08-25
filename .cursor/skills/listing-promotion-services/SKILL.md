@@ -1,6 +1,6 @@
 ---
 name: listing-promotion-services
-description: Design and scaffold listing_service and promotion_service Python microservices for humachine. Use when building marketplace publishing, Amazon SP-API integration, Flipkart/Meesho listing jobs, or automated promotion campaigns.
+description: Design and scaffold listing_service and promotion_service Python microservices for humachine ecommerce. Use when building marketplace publishing, Amazon SP-API integration, Flipkart/Meesho listing jobs, or automated promotion campaigns.
 ---
 
 # Listing and Promotion Services
@@ -9,9 +9,9 @@ description: Design and scaffold listing_service and promotion_service Python mi
 
 | Service | Path | Role |
 |---------|------|------|
-| `listing_service` | `services/listing_service/` | Publish and sync marketplace listings |
-| `promotion_service` | `services/promotion_service/` | Create and manage ad campaigns |
-| `worker_service` | `services/worker_service/` | Celery jobs, retries, polling |
+| `listing_service` | `services/listing_service/` | Active MVP — publish and sync marketplace listings |
+| `promotion_service` | `services/promotion_service/` | Active MVP — create and manage ad campaigns |
+| `worker_service` | `services/worker_service/` | Active MVP — background jobs, retries, polling |
 
 ## Listing flow
 

@@ -1,6 +1,6 @@
 ---
 name: api-gateway-service
-description: Develop and test the FastAPI api_gateway service in humachine. Use when adding routes, Pydantic schemas, catalog store logic, pytest tests, CORS config, or running uvicorn for services/api_gateway.
+description: Develop and test the FastAPI api_gateway service in humachine ecommerce. Use when adding routes, Pydantic schemas, catalog store logic, pytest tests, CORS config, or running uvicorn for services/api_gateway.
 ---
 
 # API Gateway Service
@@ -26,13 +26,12 @@ Use quoted extras in zsh: `pip install -e '.[dev]'`
 
 ```text
 app/
-  main.py           FastAPI app and CORS
-  config.py         Settings via pydantic-settings
-  routers/          health, marketplaces, products
-  schemas/          Pydantic models
-  services/         catalog store and business logic
-tests/
-  test_api.py
+  agents/
+    ingestion_agent.py   Agent 1 — upload + enqueue
+    dispatch_agent.py    Agent 2 — queue consumer + HTTP fan-out
+  services/
+    message_queue.py     memory or Redis queue
+    status_tracker.py    per-service ingestion status
 ```
 
 ## Adding a route
@@ -48,9 +47,16 @@ tests/
 - Use `HTTPException` for 404/400 errors
 - Keep routers thin; put state transitions in services
 - Prefix frontend routes with `/api/v1`
-- Allow CORS for Vite dev server origins in `config.py`
+- Allow CORS for Vite/frontend origins in `config.py`
+- Ingestion agent: `app/agents/ingestion_agent.py`
+- Dispatch agent: `app/agents/dispatch_agent.py`
+- Queue: `app/services/message_queue.py` (`memory` or `redis`)
+- Status: `app/services/status_tracker.py`
+- Service URLs come from `API_GATEWAY_*_SERVICE_URL` env vars
 
 ## Docs
 
 - Service README: `services/api_gateway/README.md`
 - Setup guide: `services/api_gateway/docs/SETUP.md`
+- Ingestion skill: `.cursor/skills/product-ingestion-agent/SKILL.md`
+- Dispatch skill: `.cursor/skills/dispatch-agent/SKILL.md`

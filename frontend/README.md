@@ -47,8 +47,8 @@ docker compose up --build frontend
 Or from `frontend/`:
 
 ```bash
-docker build -t humachine-frontend .
-docker run --rm -p 8000:8000 humachine-frontend
+docker build -t humachine ecommerce-frontend .
+docker run --rm -p 8000:8000 humachine ecommerce-frontend
 ```
 
 App: `http://localhost:8000`

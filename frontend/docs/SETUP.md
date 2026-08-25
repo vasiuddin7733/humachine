@@ -44,8 +44,8 @@ docker compose up --build frontend
 From `frontend/`:
 
 ```bash
-docker build -t humachine-frontend .
-docker run --rm -p 8000:8000 humachine-frontend
+docker build -t humachine ecommerce-frontend .
+docker run --rm -p 8000:8000 humachine ecommerce-frontend
 ```
 
 The `.dockerignore` file keeps the image small by excluding:
