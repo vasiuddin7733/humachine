@@ -48,6 +48,9 @@ docker run --rm -p 8002:8002 humachine ecommerce-catalog-service
 | `CATALOG_SERVICE_APP_NAME` | humachine ecommerce Catalog Service | Service title |
 | `CATALOG_SERVICE_API_PREFIX` | `/api/v1` | API route prefix |
 | `CATALOG_SERVICE_ENVIRONMENT` | `development` | Runtime environment |
+| `CATALOG_SERVICE_PORT` | `8002` | Service port |
+| `CATALOG_SERVICE_REDIS_URL` | `redis://127.0.0.1:6379/0` | Shared queue broker |
+| `CATALOG_SERVICE_QUEUE_NAME` | `humachine.ingestion` | Shared queue name |
 | `CATALOG_SERVICE_ALLOWED_ORIGINS` | frontend/gateway URLs | CORS origins |
 
 ## API routes

@@ -166,6 +166,8 @@ Located in `.cursor/skills/`:
 
 - `ecommerce-marketplace-workflow`
 - `api-gateway-service`
+- `product-ingestion-agent`
+- `dispatch-agent`
 - `catalog-service`
 - `listing-service`
 - `promotion-service`
@@ -173,3 +175,7 @@ Located in `.cursor/skills/`:
 - `frontend-control-center`
 - `playwright-e2e-testing`
 - `listing-promotion-services`
+
+## Environment variables
+
+Copy [`.env.example`](.env.example) for service URLs and ports used by Docker Compose and the gateway ingestion agent.

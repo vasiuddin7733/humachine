@@ -1,6 +1,6 @@
 # Skills
 
-Operator and developer skills supported by the humachine ecommerce ecommerce platform.
+Operator and developer skills supported by the humachine ecommerce platform.
 
 ## Operator skills (business workflow)
 
@@ -10,6 +10,7 @@ Operator and developer skills supported by the humachine ecommerce ecommerce pla
 | **Marketplace control** | Manage Amazon, Flipkart, and Meesho listings independently |
 | **Listing readiness** | Validate product data before submission |
 | **Promotion automation** | Launch campaigns only after a listing is active |
+| **Product ingestion** | Upload images/content and auto-fan-out to microservices |
 
 ## Developer skills (implementation)
 
@@ -29,13 +30,15 @@ These teach Cursor how to work in this repo. Stored in `.cursor/skills/`:
 
 1. `ecommerce-marketplace-workflow` — state machines and validation rules
 2. `api-gateway-service` — FastAPI gateway patterns
-3. `catalog-service` — product CRUD and validation
-4. `listing-service` — marketplace publish and status transitions
-5. `promotion-service` — campaign creation and launch
-6. `worker-service` — background jobs, sync, and retries
-7. `frontend-control-center` — React UI and pnpm commands
-8. `playwright-e2e-testing` — test writing and locator fixes
-9. `listing-promotion-services` — listing/promotion/worker scaffolding
+3. `product-ingestion-agent` — upload enqueue (Agent 1)
+4. `dispatch-agent` — queue consumer + status tracking (Agent 2)
+5. `catalog-service` — product CRUD and validation
+6. `listing-service` — marketplace publish and status transitions
+7. `promotion-service` — campaign creation and launch
+8. `worker-service` — background jobs, sync, and retries
+9. `frontend-control-center` — React UI and pnpm commands
+10. `playwright-e2e-testing` — test writing and locator fixes
+11. `listing-promotion-services` — listing/promotion/worker scaffolding
 
 See [`.cursor/skills/README.md`](../.cursor/skills/README.md) for the agent index.
 

@@ -82,6 +82,8 @@ class CatalogStore:
             price=payload.price,
             marketplaces=payload.marketplaces,
             channels=_default_channels(),
+            description=payload.description.strip(),
+            image_urls=list(payload.image_urls),
         )
         self._products[product_id] = product
         return product
@@ -99,6 +101,8 @@ class CatalogStore:
             updates["title"] = updates["title"].strip()
         if "category" in updates and updates["category"] is not None:
             updates["category"] = updates["category"].strip()
+        if "description" in updates and updates["description"] is not None:
+            updates["description"] = updates["description"].strip()
 
         if "marketplaces" in updates and updates["marketplaces"] is not None:
             channels = dict(product.channels)
