@@ -20,6 +20,23 @@ pip install -e '.[dev]'
 uvicorn app.main:app --reload --port 8001
 ```
 
+## Docker
+
+From repository root:
+
+```bash
+docker compose up --build api_gateway
+```
+
+Or from `services/api_gateway/`:
+
+```bash
+docker build -t humachine-api-gateway .
+docker run --rm -p 8001:8001 humachine-api-gateway
+```
+
+API docs: `http://127.0.0.1:8001/docs`
+
 ## Test
 
 ```bash
@@ -75,6 +92,7 @@ Repo template: [`.env.example`](../../../.env.example)
 Poll status:
 
 ```bash
+curl -X POST http://127.0.0.1:8001/api/v1/products \
 curl http://127.0.0.1:8001/api/v1/ingestions/1
 ```
 
@@ -93,4 +111,12 @@ curl -X POST http://127.0.0.1:8001/api/v1/products/upload \
     "daily_budget": 20.0,
     "auto_activate_listings": true
   }'
+```
+
+Publish to Flipkart:
+
+```bash
+curl -X POST http://127.0.0.1:8001/api/v1/products/1/publish \
+  -H "Content-Type: application/json" \
+  -d '{"marketplace": "flipkart"}'
 ```

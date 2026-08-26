@@ -31,7 +31,7 @@ This frontend is a React + TypeScript dashboard for a multi-marketplace ecommerc
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev          # http://localhost:8000
 pnpm build
 pnpm test:e2e
 ```

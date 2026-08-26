@@ -31,12 +31,13 @@ pnpm install
 pnpm dev
 ```
 
-App: `http://localhost:5173`
+App: `http://localhost:8001`
 
 Docker:
 
 ```bash
 docker compose up --build frontend
+docker compose up --build api_gateway
 ```
 
 App (container): `http://localhost:8000`
@@ -53,6 +54,7 @@ uvicorn app.main:app --reload --port 8001
 
 API docs: `http://127.0.0.1:8001/docs`
 
+Docker API gateway: `http://127.0.0.1:8001/docs`
 ### Catalog service
 
 ```bash
