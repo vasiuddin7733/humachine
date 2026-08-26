@@ -87,6 +87,16 @@ Each product stores independent channel state:
 |---------|------|----------------|
 | `shared_schemas` | `packages/shared_schemas/` | Shared Pydantic models / DTOs across services |
 
+## Agent infra (portable)
+
+| Path | Responsibility |
+|------|----------------|
+| `agent-infra/agents/` | Agent specs for ingestion + dispatch (any AI tool) |
+| `agent-infra/skills/` | Domain skills source of truth |
+| `agent-infra/tools/` | Shared upload/status/health scripts |
+| `CLAUDE.md` | Claude / Claude Code entrypoint |
+| `.cursor/skills/` | Cursor mirror of `agent-infra/skills/` |
+
 ## Infrastructure (planned)
 
 | Component | Path | Responsibility |
