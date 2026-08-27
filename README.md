@@ -160,6 +160,7 @@ docker compose up --build worker_service
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Skills](docs/SKILLS.md)
+- [GitHub Pages (frontend)](docs/GITHUB_PAGES.md)
 - [Frontend setup](frontend/docs/SETUP.md)
 - [API gateway setup](services/api_gateway/docs/SETUP.md)
 - [Catalog service setup](services/catalog_service/docs/SETUP.md)

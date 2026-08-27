@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 
+import { ServiceConnections } from './ServiceConnections'
+
 type Marketplace = 'amazon' | 'flipkart' | 'meesho'
 type ProductStatus = 'draft' | 'ready' | 'submitted' | 'active'
 type PromotionStatus = 'not_started' | 'scheduled' | 'live'
@@ -394,6 +396,8 @@ function App() {
           </article>
         </div>
       </section>
+
+      <ServiceConnections />
 
       <section className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
         <div className="mb-5">

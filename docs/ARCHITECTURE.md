@@ -104,6 +104,15 @@ Each product stores independent channel state:
 | Docker configs | `infra/docker/` | Shared compose overrides and build helpers |
 | Nginx | `infra/nginx/` | Reverse proxy for frontend and API gateway |
 
+## GitHub Pages (frontend only)
+
+| Item | Detail |
+|------|--------|
+| Workflow | `.github/workflows/deploy-gh-pages.yml` |
+| Docs | [`docs/GITHUB_PAGES.md`](GITHUB_PAGES.md) |
+| Site | `https://vasiuddin7733.github.io/humachine/` |
+| Backends | Not on Pages — attach via `VITE_*_URL` to Docker or free API hosts |
+
 ## Integration plan
 
 1. Replace frontend local state with API gateway calls.
