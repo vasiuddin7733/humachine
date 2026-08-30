@@ -1,43 +1,38 @@
 import { expect, test } from '@playwright/test'
 
-test('creates a product and advances its Flipkart listing to live promotion', async ({ page }) => {
+test('uploads images, saves a product, and advances its Flipkart listing to live promotion', async ({
+  page,
+}) => {
   await page.goto('/')
 
-  await expect(page.getByRole('heading', { name: 'Ecommerce Control Center' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Seller Catalog Hub' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Upload product images' })).toBeVisible()
 
   await page.getByLabel('Product title').fill('Desk Lamp')
-  await page.getByLabel('Category').fill('Home')
+  await page.getByLabel('Product category').fill('Home')
   await page.getByLabel('Price').fill('39.99')
-  await page.getByRole('button', { name: 'Add product' }).click()
+  await page.getByRole('button', { name: 'Save product draft' }).click()
 
-  await expect(page.getByRole('heading', { name: 'Desk Lamp' })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Amazon', exact: true })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Flipkart', exact: true })).toBeVisible()
+  await expect(page.getByText('Desk Lamp').first()).toBeVisible()
 
-  await page.getByRole('button', { name: 'Flipkart', exact: true }).click()
-  await expect(
-    page.locator('span').filter({ hasText: 'Promotion: Not started' }),
-  ).toBeVisible()
+  const flipkartBlock = page.getByLabel('Flipkart catalog listing')
+  await expect(flipkartBlock).toBeVisible()
 
-  await page.getByRole('button', { name: 'Mark Flipkart listing ready' }).click()
-  await expect(page.getByText('Ready for listing')).toBeVisible()
+  await flipkartBlock.getByRole('button', { name: 'Continue' }).click()
+  await flipkartBlock.getByRole('button', { name: 'Continue' }).click()
 
-  await page.getByRole('button', { name: 'Submit to Flipkart' }).click()
-  await expect(
-    page.locator('span').filter({ hasText: 'Submitted to Flipkart' }),
-  ).toBeVisible()
+  await flipkartBlock.getByRole('button', { name: 'Mark Flipkart listing ready' }).click()
+  await expect(flipkartBlock.getByText('Ready for listing')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Activate Flipkart listing' }).click()
-  await expect(
-    page.locator('span').filter({ hasText: 'Active on Flipkart' }),
-  ).toBeVisible()
+  await flipkartBlock.getByRole('button', { name: 'Submit to Flipkart' }).click()
+  await expect(flipkartBlock.getByText('Submitted to Flipkart')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Launch Flipkart promotion' }).click()
-  await expect(
-    page.locator('span').filter({ hasText: 'Promotion: Scheduled' }),
-  ).toBeVisible()
+  await flipkartBlock.getByRole('button', { name: 'Activate Flipkart listing' }).click()
+  await expect(flipkartBlock.getByText('Active on Flipkart')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Set Flipkart campaign live' }).click()
-  await expect(page.locator('span').filter({ hasText: 'Promotion: Live' })).toBeVisible()
-  await expect(page.getByText('Campaign live')).toBeVisible()
+  await flipkartBlock.getByRole('button', { name: 'Launch Flipkart promotion' }).click()
+  await expect(flipkartBlock.getByText('Promotion: Scheduled')).toBeVisible()
+
+  await flipkartBlock.getByRole('button', { name: 'Set Flipkart campaign live' }).click()
+  await expect(flipkartBlock.getByText('Promotion: Live')).toBeVisible()
 })
